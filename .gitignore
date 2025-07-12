@@ -1,0 +1,15 @@
+# Ignore bundled output
+/main.js
+
+# Other common ignores
+node_modules
+*.log
+.DS_Store
+.aider*
+
+.vscode
+.cursor
+.windsurf
+.windsurfrules
+.cursorignore
+.vault
