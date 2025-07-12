@@ -1,126 +1,110 @@
-# 🚩 Pixel Banner for Obsidian
+# Banners
+An [Obsidian](https://obsidian.md/) plugin to add banner images (and icons) to your notes!
 
-Pixel Banner is a powerful Obsidian plugin that transforms your notes with customizable banner images, creating visually stunning headers that enhance your knowledge workspace. Go beyond simple note-taking with banners that provide visual context and improved aesthetics.
+![banners-demo](https://raw.githubusercontent.com/noatpad/obsidian-banners/master/images/banners.gif)
 
-### Maintained by
-<a href="https://www.equilllabs.com">
-  <img src="https://raw.githubusercontent.com/jparkerweb/eQuill-Labs/refs/heads/main/src/static/images/logo-text-outline.png" alt="eQuill Labs" height="40">
-</a>
+## Usage
+Within an open note, you can use the **Add/Change banner with local image** command to select a local image as a banner for your note; or you can copy an image URL & run the **Paste banner from clipboard** command to paste the URL as a banner image. You can also drag the banner image to reposition the image, as well as use the **Lock/Unlock banner position** command to "lock" the banner's position in place and vice versa.
 
-<br>
+If you want to remove the banner, you can run the **Remove banner** command to do just that.
 
-![pixel-banner](img/pixel-banner.jpg)
+You can also add a banner icon, using **Add/Change emoji icon** & selecting an emoji of your choice. You can also change an existing emoji by clicking on it in the preview.
 
-## Key Features
+Similarly, you can remove the icon with the **Remove icon** command.
 
-### ✨ Smart Banner Creation
-- **AI-Generated Banners**: Create stunning, custom banners using AI generation without design skills.
-- **Banner Collection**: Browse and use professional banner images and videos from the integrated Pixel Banner Plus Collection, including many free options.
-- **3rd Party APIs**: Connect to Pexels, Pixabay, Flickr, and Unsplash to automatically fetch banner images based on keywords.
-- **Local Image Support**: Use images from your vault as banners with advanced customization options.
-- **Video Banner Support**: Add dynamic MP4 and MOV videos from your vault as animated banners, with full download support from the Pixel Banner Plus Collection.
-- **Direct URL Banners**: Apply banners from any web URL for maximum flexibility.
-- **Note Properties Integration**: Control all banner aspects through Obsidian's `properties` feature.
+### Advanced
+Under the hood, this plugin uses your file's YAML frontmatter/metadata to store info about your banner. So you can also input it manually or use other plugins to input it for you. These are the fields you can use thus far (using the default frontmatter field prefix):
 
-### 🎨 Visual Customization
-- **Position Control**: Fine-tune banner placement with precise vertical and horizontal positioning for perfect alignment.
-- **Appearance Options**: Customize transparency, border radius, animation effects, and spacing for seamless integration.
-- **Display Flexibility**: Choose between display modes (cover, auto, contain) with options for repetition and sizing.
-- **Banner Icons**: Add and customize decorative icons with control over size, position, color, background, and style.
-- **Title Integration**: Style in-line titles with custom colors that complement your banner designs.
-- **Hide Frontmatter**: Automatically hide banner-related fields in reading view for a cleaner look.
+```yaml
+# The source path of your banner image, can be a URL or an internal link to an image.
+# NOTE: Make sure it's wrapped in quotes to avoid parsing errors, such as "![[file]]"
+banner: string
 
-### ⚡ Efficient Workflow
-- **Banner Selection Modal**: Quick visual picker for local images with sorting options.
-- **Command Integration**: Access all banner functions via command palette and hot keys.
-- **Quick Action Icons**:
-    - **Select**: Quickly choose a banner source.
-    - **Pin**: Save a banner from a URL or API as a local file.
-    - **Refresh**: Get a new image from the same keyword or URL.
-    - **View**: Open the full banner image in a modal.
-- **Custom Field Names**: Rename any banner property field to fit your workflow.
+# The banner's center position. A number between 0-1
+banner_x: number
+banner_y: number
 
-### 📂 Smart Organization
-- **Folder-Specific Settings**: Configure default banner behavior per folder.
-- **Image Shuffling**: Automatically rotate through images in specified folders.
-- **Direct Children Option**: Apply settings only to immediate folder contents.
-- **Default Saved Banners Folder**: Configurable default location for saving downloaded banners from the collection or pinned from APIs.
-- **File Extension Preservation**: Automatically saves banners with correct file extensions (.jpg, .png, .gif, .svg, .mp4, .mov).
+# Determines if the banner is locked in place or not
+banner_lock: boolean
 
-### 🎬 Video Banner Features
-- **Video File Support**: Full support for MP4 and MOV video files as animated banners.
-- **Video Collection**: Download and use professional video banners from the Pixel Banner Plus Collection.
-- **Smart UI Elements**: Video banners display with distinct badges and play icons for easy identification.
-- **Flexible Saving**: Choose custom save locations and filenames when downloading video banners.
-- **Seamless Integration**: Videos work with all existing banner features (positioning, sizing, icons, etc.).
+# The banner icon. Can be an emoji or any string really (but it'll only accept the first letter)
+banner_icon: string
+```
 
-### 💎 Premium Features (Pixel Banner Plus)
-- **Token-Based System**: Generate AI banners with a flexible pay-as-you-go model.
-- **Banner History**: Access your previously generated banners.
-- **Prompt Inspiration**: Get AI assistance with banner ideas.
-- **Daily Game**: Play a fun daily game to earn banner tokens.
-- **No Subscription Required**: Purchase tokens only when needed.
+## Settings
+### Banners
+- **Banner height**: Specify how tall the banner image should be for each note.
+- **Banner style**: Change how your banner looks in your notes. There are currently 2 options:
+  - *Solid*: A simple, sharp-container banner image.
+  - *Gradient*: A banner that fades into transparency, inspired by [this forum post](https://forum.obsidian.md/t/header-images-with-css/18917).
 
-Enhance your Obsidian experience with beautiful, intelligent banners that make your notes visually distinctive and organized. Whether you prefer AI-generated art, professional designs from the store, or your own images, Pixel Banner helps create a visually cohesive knowledge base.
+| Solid | Gradient |
+| --- | --- |
+| ![solid-style](https://raw.githubusercontent.com/noatpad/obsidian-banners/master/images/solid.png) | ![gradient-style](https://raw.githubusercontent.com/noatpad/obsidian-banners/master/images/gradient.png) |
 
-## 🔧 Installation
+- **Show banner in internal embed**: Choose if the banner should be displayed in the inline internal embed within a file.
+- **Preview internal banner height**: If **Show banner in internal embed** is on, this setting determines how tall the banner image in the embed should be.
 
-1. Open Obsidian and go to Settings
-2. Navigate to Community Plugins and disable Safe Mode
-3. Click on Browse and search for "Pixel Banner"
-4. Install the plugin and enable it
+![inception](https://raw.githubusercontent.com/noatpad/obsidian-banners/master/images/inception.png)
 
-## 🚀 Basic Workflow
+- **Show banner in preview embed**: Choose if the banner should be displayed in the preview embed for the *Page Preview* plugin.
+- **Preview embed banner height**: If **Show banner in preview embed** is on, this setting determines how tall the banner image in the embed should be.
 
-1. Open a note and click the `Banner Flag` in the top left corner of your Note  
+![embed](https://raw.githubusercontent.com/noatpad/obsidian-banners/master/images/embed.png)
 
-    ![1](https://raw.githubusercontent.com/jparkerweb/pixel-banner/refs/heads/main/img/1.jpg)
+- **Frontmatter field name**: If set, use a customizable frontmatter field to use for banner data. For example, the default value `banner` will use the fields `banner_x`, `banner_y`, and so on.
+- **Banner drag modifier key**: Set a modifier key that must be usedto drag a banner. For example, setting it to *Shift* means you'll have to drag with Shift to move it. This can help avoid accidental banner shifts.
 
-2. Select a `Source` for your Banner (the AI and Collection options require you to first create a FREE Pixel Banner Plus account at: https://pixel-banner.online)  
+### Banner Icons
+- **Horizontal alignment**: Align the icon horizontally within the note's boundaries. If set to *Custom*, you can input a custom offset, relative to the note's left boundary. This can be any valid [CSS length value](https://developer.mozilla.org/en-US/docs/Learn/CSS/Building_blocks/Values_and_units#lengths).
+- **Vertical alignment**: Align the icon vertically relative to a banner's bottom edge, if a banner is present. If set to *Custom*, you can input a custom offset, relative to the center of a banner's lower edge if any. This can also be any valid [CSS length value](https://developer.mozilla.org/en-US/docs/Learn/CSS/Building_blocks/Values_and_units#lengths).
+- **Use Twemoji**: If set, it will use Twemoji (Twitter's emoji set) instead of the stock emoji on your device. This is on by default as there is better emoji support using this.
 
-    ![2](https://raw.githubusercontent.com/jparkerweb/pixel-banner/refs/heads/main/img/2.jpg)
+### Local Image Modal
+- **Show preview images**: Enable this to allow preview images to be seen when searching through the modal.
+- **Suggestions limit**: Limit the amount of suggestions the modal can display at once.
+  - ***NOTE:** If you set this to a high number, while having **Show preview images** on, you may experience some slowdowns while searching.*
+- **Banners folder**: Specify a folder to exclusively search for image files within the modal. If unset, the modal will search the entire vault by default.
 
-3. _Optionally_ Add an `Icon Image` (choose from your vault, the web, or our online free collection)
+### Experimental
+- **Allow mobile drag**: Choose if you can adjust the banner positioning on mobile devices by dragging.
+  - ***NOTE:** This setting is experimental since it acts a bit funny with the mobile app's already built-in touch gestures.*
 
-    ![3](https://raw.githubusercontent.com/jparkerweb/pixel-banner/refs/heads/main/img/3.jpg)
+## Compatibility
+This plugin has been tested on desktop from 0.12.12 onwards (previously MacOS and currently Windows) and on mobile from 1.0.4 onwards (iOS). It probably works fine on older versions, but just a heads up.
 
-4. _Optionally_ Add `Icon Emoji & Text` (this can be any text, but it is advised to use an Emoji 🤣)
+## Installation
+- **From the Community Plugins tab**:
+	- Within Obsidian, search for Banners in the Community Plugins browser and install it directly
+- **Manual install**:
+  - Go to the latest release [here](https://github.com/noatpad/obsidian-banners/releases/latest), & download the files listed there (`main.js`, `styles.css`, & `manifest.json`)
+  - Go to your vault's plugin folder (`<vault>/.obsidian/plugins`), create a folder called `obsidian-banners`, and move your files in there.
+  - Reload Obsidian & enable the plugin in Settings -> Community Plugins
 
-    ![4](https://raw.githubusercontent.com/jparkerweb/pixel-banner/refs/heads/main/img/4.jpg)
+## FAQ
+#### What are these `banner`, `banner_x`, `banner_y`, ... fields in my note's frontmatter?
+This plugin uses the frontmatter to store data about your note's banner, such as its positioning and such. The fields you can use are listed [here](https://github.com/noatpad/obsidian-banners#advanced) and the prefix can be customized using the **Frontmatter field name** setting.
 
-5. _Optionally_ adjust the `position`, `size`, `color`, and other `properties` for the `Banner Image` and `Banner Icon` of the note (by default they will inherit the General settings in Pixel Banner's main setting page, but are customizable per note)
+#### Is this incompatible with other plugins?
+There are a few cases, but it depends. Because of how it functions, any plugin that conflicts with Banners' styling may cause issues. It's rather situational, but I'm planning to address some styling fixes for those conflicts down the line.
 
-    ![5](https://raw.githubusercontent.com/jparkerweb/pixel-banner/refs/heads/main/img/5.jpg)
+Currently some plugins reported to conflict with Banners are:
+- [ ] [Breadcrumbs](https://github.com/SkepticMystic/breadcrumbs)
+- [x] [Obsidian Code Block Copy](https://github.com/jdbrice/obsidian-code-block-copy)
+  - *Newer versions of Obsidian have this built-in and without issue*
+- [ ] [Obsidian Code Block Enhancer](https://github.com/nyable/obsidian-code-block-enhancer)
+- [ ] [Obsidian Embedded Note Titles](https://github.com/mgmeyers/obsidian-embedded-note-titles)
 
-6. Click the `Banner Flag` icon anytime to adjust any of these settings (the GUI is the most user-friendly way to adjust a note's pixel banner settings though you can also access and modify them through the `properties` of the note)
+## Develop
+Once you run `npm i`, you can build the files into `dist/` easily by running `npm run build`.
 
-    ![6](https://raw.githubusercontent.com/jparkerweb/pixel-banner/refs/heads/main/img/6.jpg)
-
-## 🎬 Working with Video Banners
-
-### Adding Video Banners
-1. **From Your Vault**: Select video files (.mp4, .mov) from your vault just like images
-2. **From Collection**: Browse video banners in the Pixel Banner Plus Collection (marked with video badges)
-3. **Download & Save**: Videos are automatically saved with correct file extensions and you can choose the save location
-
-### Video Banner Features
-- **Smart Badges**: Video banners display with "VIDEO" badges for easy identification
-- **Seamless Experience**: All existing banner features work with videos (icons, positioning, etc.)
-- **Flexible Saving**: Choose where to save downloaded videos and customize filenames
-
-### 🎉 Happy Pixel Bannering 🤣
-
-<a href="https://www.youtube.com/watch?v=pJFsMfrWak4">
-  <img src="https://pixel-banner.online/img/pixel-banner-logo-v3-trimmed.jpg" alt="Pixel Banner" style="max-width: 400px;">
-</a>
-
----
-
-## Appreciation
-If you enjoy `Pixel Banner` please consider sending me a tip to support my work 😀
-# [🍵 tip me here](https://ko-fi.com/jparkerweb)
-Any `ko-fi` donator automatically recieves free `Tokens` to spend in Pixel Banner Plus!
-
-## Feedback and Support
-
-If you encounter any issues or have suggestions for improvements, please [open an issue](https://github.com/jparkerweb/pixel-banner/issues) on the GitHub repository.
+You can also have it watch your files and update your plugin within your vault while you develop by running `npm run dev`. Just make sure to set `DEVDIR` in `./esbuild.config.mjs` to your testing vault beforehand.
+## Things I *might* do down the road
+- [ ] Plugin compatibility fixes and enhancements
+- [ ] Note-specific settings (override global style & height settings per note)
+  - [ ] Drag bottom of banner to determine note-specific banner height
+- [ ] Image icons instead of only emoji
+- [ ] Banner titles (a la Notion-style)
+- [ ] Allow content's vertical displacement height to be different than banner height (this can be nice for aesthetic choices with the *Gradient* style)
+- [ ] Copy image files and paste as a banner
+- [ ] Unsplash API integration (select from Unsplash's images straight from Obsidian)
