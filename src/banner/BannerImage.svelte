@@ -52,11 +52,11 @@
     };
     const toggleLock = () => dispatch("toggle-lock");
 
-    let loadStartTime: number;
+    // let loadStartTime: number;
 
-    $: if (src) {
-        loadStartTime = performance.now();
-    }
+    // $: if (src) {
+    //     loadStartTime = performance.now();
+    // }
 
     let dragParam: boolean;
     $: {
@@ -98,8 +98,8 @@
         on:dragBannerEnd={dragEnd}
         on:toggleDrag={toggleDrag}
         on:load={() => {
-            const duration = performance.now() - loadStartTime;
-            new Notice(`[Banner] 图片加载耗时: ${duration.toFixed(2)}ms`);
+            // const duration = performance.now() - loadStartTime;
+            // new Notice(`[Banner] 图片加载耗时: ${duration.toFixed(2)}ms`);
         }}
     />
 </div>
