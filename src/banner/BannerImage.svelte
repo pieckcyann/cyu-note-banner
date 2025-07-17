@@ -106,7 +106,8 @@
 
 <style lang="scss">
     .banner-wrapper {
-        height: var(--banners-height, 330px);
+        // height: var(--banners-height, 330px);
+        height: 20vw;
         overflow: hidden;
         position: relative;
         border-radius: 15px;

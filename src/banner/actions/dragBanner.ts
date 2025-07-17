@@ -3,6 +3,9 @@ import type { Action } from "svelte/action";
 import type { BannerDataWrite } from "src/bannerData";
 import type { BannerDragModOption } from "src/settings/structure";
 
+let minY = 0;
+let maxY = 0;
+
 type MTEvent = MouseEvent | TouchEvent;
 
 export interface XY {
@@ -24,6 +27,7 @@ interface DragAttributes {
 type DragBannerAction = Action<HTMLImageElement, DragParams, DragAttributes>;
 
 // Clamp a value if needed, otherwise round it to 3 decimals
+// 如果需要，限制一个值，否则将其四舍五入到小数点后 3 位
 const clampAndRound = (min: number, value: number, max: number) => {
     if (value > max) return max;
     if (value < min) return min;
@@ -64,6 +68,20 @@ const dragBanner: DragBannerAction = (img, params) => {
         const clientRatio = clientWidth / clientHeight;
         const naturalRatio = naturalWidth / naturalHeight;
         isVerticalDrag = naturalRatio <= clientRatio;
+
+        if (isVerticalDrag && imageSize.height > 0) {
+            const imageRenderedHeight = clientWidth / naturalRatio;
+            const overflowHeight = imageRenderedHeight - clientHeight;
+
+            // 图片可视区域最多上移的百分比（相对于整张图片）
+            maxY = overflowHeight / imageRenderedHeight;
+            minY = 0;
+        } else {
+            // 不垂直拖动时 y 不动
+            minY = objectPos.y;
+            maxY = objectPos.y;
+        }
+
         imageSize = isVerticalDrag
             ? { width: 0, height: clientWidth / naturalRatio - clientHeight }
             : { width: clientHeight * naturalRatio - clientWidth, height: 0 };
@@ -87,7 +105,7 @@ const dragBanner: DragBannerAction = (img, params) => {
         };
         objectPos = {
             x: clampAndRound(0, objectPos.x + drag.x, 1),
-            y: clampAndRound(0, objectPos.y + drag.y, 1),
+            y: clampAndRound(minY, objectPos.y + drag.y, 1 - maxY),
         };
         // new Notice(`${objectPos.x}、${objectPos.y}`);
 
