@@ -107,10 +107,10 @@
 <style lang="scss">
     .banner-wrapper {
         // height: var(--banners-height, 330px);
-        height: 20vw;
+        height: 18vw;
         overflow: hidden;
         position: relative;
-        border-radius: 15px;
+        border-radius: 10px;
         width: 100%;
 
         &.gradient {
