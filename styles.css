@@ -31,14 +31,14 @@ p.svelte-fq1vnp {
 }
 
 /* fakecss:E:/OB vault/Endless-learning/.obsidian/plugins/cyu-note-banner/src/banner/BannerImage.esbuild-svelte-fake-css */
-.banner-wrapper.svelte-nd1t57 {
-  height: 18vw;
+.banner-wrapper.svelte-e6qcjc {
+  height: 19vw;
   overflow: hidden;
   position: relative;
   border-radius: 10px;
   width: 100%;
 }
-.banner-wrapper.gradient.svelte-nd1t57 {
+.banner-wrapper.gradient.svelte-e6qcjc {
   mask-image:
     linear-gradient(
       to bottom,
@@ -50,7 +50,7 @@ p.svelte-fq1vnp {
       black 50%,
       transparent);
 }
-.banner-wrapper.gradient.svelte-nd1t57 {
+.banner-wrapper.gradient.svelte-e6qcjc {
   mask-image:
     linear-gradient(
       to bottom,
@@ -62,21 +62,21 @@ p.svelte-fq1vnp {
       black 70%,
       transparent);
 }
-img.svelte-nd1t57 {
+img.svelte-e6qcjc {
   display: block;
   width: 100%;
   position: relative;
   max-width: none;
   user-select: none;
 }
-img.readable-width.svelte-nd1t57 {
+img.readable-width.svelte-e6qcjc {
   max-width: var(--file-line-width);
   margin: 0 auto;
 }
-img.draggable.svelte-nd1t57 {
+img.draggable.svelte-e6qcjc {
   cursor: grab;
 }
-img.dragging.svelte-nd1t57 {
+img.dragging.svelte-e6qcjc {
   cursor: grabbing;
 }
 
