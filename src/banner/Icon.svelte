@@ -23,14 +23,14 @@ import/no-named-as-default-member */
     $: ({ headerDecor: decor, useTwemoji } = $settings);
     $: ({ type, value } = icon);
 
-    // $: html =
-    //     type === "emoji" && useTwemoji
-    //         ? twemoji.parse(value, { className: "banner-emoji" }) // 返回解析后的 IMG 标签
-    //         : value;
+    $: html =
+        type === "emoji" && useTwemoji
+            ? twemoji.parse(value, { className: "banner-emoji" }) // 返回解析后的 IMG 标签
+            : `<img class="banner-emoji" draggable="false" alt="💯" src="${getInternalImage(value, file.path)}">`;
 
     // $: html = `<img class="banner-emoji" draggable="false" alt="💯" src="app://43ac2bffef225e4e37c2de680d07ec89b983/E:/OB%20vault/Endless-learning/Attachment/others/gal/ガルドマ-女子寮の管理人-After/%e3%82%ac%e3%83%ab%e3%83%89%e3%83%9e-%e5%a5%b3%e5%ad%90%e5%af%ae%e3%81%ae%e7%ae%a1%e7%90%86%e4%ba%ba-After.ico">`;
 
-    $: html = `<img class="banner-emoji" draggable="false" alt="💯" src="${getInternalImage(value, file.path)}">`;
+    // $: html = `<img class="banner-emoji" draggable="false" alt="💯" src="${getInternalImage(value, file.path)}">`;
 </script>
 
 <div
@@ -82,8 +82,11 @@ import/no-named-as-default-member */
         :global(img.banner-emoji) {
             height: 1em;
             width: 1em;
-            border-radius: 50%;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+
+            &.banner-image-icon {
+                border-radius: 50%;
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+            }
         }
     }
 </style>
